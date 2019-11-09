@@ -56,9 +56,15 @@ def weathercurrent():
             finalResult = {}
 
             for point in t.keys():
-                finalResult[point] = 1 - (t[point] - minimum) / (maximum - minimum)
+                temp =  1 - (t[point] - minimum) / (maximum - minimum)
+                if temp < 0.5:
+                    finalResult[point] = ["low", Alexandria[point][0], Alexandria[point][1]]
+                elif  0.5 < temp < 0.75:
+                    finalResult[point] = ["medium",  Alexandria[point][0], Alexandria[point][1]]
+                else:
+                    finalResult[point] = ["high",  Alexandria[point][0], Alexandria[point][1]]
         return (finalResult)
-            # return (5)
+
     except:
         return("Error")
 
